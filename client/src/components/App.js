@@ -31,17 +31,17 @@ export default class App extends Component {
             <div className="main">
                 <header>
                     <NavBar logo="🧬">
-                        <NavComponent link="https://google.com">Projects</NavComponent>
-                        <NavComponent link="./resume.pdf">Resume</NavComponent>
-                        <NavComponent link="https://github.com/aiomonitors">Github</NavComponent>
+                        <NavComponent link="#projects">Projects</NavComponent>
+                        <NavComponent link="./resume.pdf" target="_blank">Resume</NavComponent>
+                        <NavComponent link="https://github.com/aiomonitors" target="_blank">Github</NavComponent>
                         <ContactButton link="mailto:navr@discoders.us" />
                     </NavBar>
                 </header>
                 <main style={mainAreaStyles.mainStyle}>
                     <div style={mainAreaStyles.mainHeader} className="animated fadeIn fast">Shihab Chowdhury</div>
                     <div style={mainAreaStyles.languages}>Python, Node, TypeScript, GoLang</div>
-                    <div style={mainAreaStyles.aboutMe}>I'm a 17 year old programmer living in Queens, New York City. I also enjoy playing <PurpleLink fontSize={mainAreaStyles.aboutMe.fontSize}>lacrosse</PurpleLink>, <PurpleLink fontSize={mainAreaStyles.aboutMe.fontSize}>videogames</PurpleLink>, <PurpleLink fontSize={mainAreaStyles.aboutMe.fontSize}>reading</PurpleLink>, and <PurpleLink fontSize={mainAreaStyles.aboutMe.fontSize}>reselling</PurpleLink> sneakers.</div>
-                    <Projects moreClick={this.toggleSwitch.bind(this)} state={this.state}>
+                    <div style={mainAreaStyles.aboutMe}>I'm a 17 year old programmer living in Queens, New York City. I also enjoy playing <PurpleLink fontSize={mainAreaStyles.aboutMe.fontSize}>lacrosse</PurpleLink>, <PurpleLink fontSize={mainAreaStyles.aboutMe.fontSize}>video games</PurpleLink>, <PurpleLink fontSize={mainAreaStyles.aboutMe.fontSize}>reading</PurpleLink>, and <PurpleLink fontSize={mainAreaStyles.aboutMe.fontSize}>reselling</PurpleLink> sneakers.</div>
+                    <Projects moreClick={this.toggleSwitch.bind(this)} state={this.state} id="projects">
                         <Card 
                             title="godiscord"
                             src="https://hackernoon.com/drafts/y54f33rq.png"
@@ -71,7 +71,7 @@ export default class App extends Component {
                         <Card 
                             style={{display: this.state.display, textDecoration: 'none'}}
                             src="./ww2proj.png"
-                            href="ww2proj.shihab.xyz"
+                            href="http://ww2proj.shihab.xyz"
                             title="Atomic Fission in WW2 Website">
                             A website I created for my 11th grade history class about Atomic Fission during WWII. Uses <PurpleLink>Bootstrap</PurpleLink>
                         </Card>
@@ -177,7 +177,7 @@ class Card extends Component {
     render() {
         var linkIcon = this.props.href ? <i class="fas fa-external-link-alt" style={{color: '#CCD1D1', marginLeft: '10px', fontSize: '13px'}}></i> : null
         return (
-            <a style={this.props.style || this.style} href={this.props.href}>
+            <a style={this.props.style || this.style} href={this.props.href} target="_blank">
                 <div style={this.imageContainer}>
                     <img src={this.props.src} style={this.imageStyle}/>
                 </div>
@@ -239,9 +239,9 @@ class Footer extends Component {
             <div style={style}>
                 <div style={{display: 'inline-block', fontSize: '12px', marginLeft: '20px'}}>Shihab Chowdhury</div>
                 <div style={linkStyle}>
-                    <FooterComponent state={this.props.state}>Projects</FooterComponent>
-                    <FooterComponent state={this.props.state}>Projects</FooterComponent>
-                    <FooterComponent state={this.props.state}>Projects</FooterComponent>
+                    <FooterComponent state={this.props.state} link="#projects">Projects</FooterComponent>
+                    <FooterComponent state={this.props.state} link="./resume.pdf" target="_blank">Resume</FooterComponent>
+                    <FooterComponent state={this.props.state} link="https://github.com/aiomonitors"target="_blank">Github</FooterComponent>
                     <Socials state={this.props.state}/>
                     <FooterComponent state={this.props.state}>Built with <PurpleLink>React</PurpleLink></FooterComponent>
                 </div>
@@ -271,10 +271,13 @@ class FooterComponent extends Component {
     } 
     render() {
         let liStyle = this.props.state.width > 768 ? this.liStyleDefault : this.liStyleResponsive
-        let linkStyle = {}
+        let linkStyle = {
+            textDecoration: 'none',
+            color: 'grey'
+        }
         return (
             <li style={liStyle}>
-                <a href={this.props.link} className={this.props.className} onClick={this.props.onClick} style={linkStyle}>{this.props.children}</a>
+                <a href={this.props.link} className={this.props.className} onClick={this.props.onClick} style={linkStyle} target={this.props.target}>{this.props.children}</a>
             </li>
         )
     }
@@ -330,7 +333,7 @@ class SocialsComponent extends Component {
         let linkStyle = this.props.state.width > 768 ? {} : this.linkStyleResponsive
         return (
             <li style={liStyle}>
-                <a href={this.props.link} className={this.props.className} onClick={this.props.onClick} style={linkStyle}>{this.props.children}</a>
+                <a href={this.props.link} className={this.props.className} onClick={this.props.onClick} style={linkStyle} target="_blank">{this.props.children}</a>
             </li>
         )
     }

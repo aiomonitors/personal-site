@@ -113,7 +113,7 @@ export class NavComponent extends Component {
 
         return (
             <li style={this.liStyle}>
-                <a href={this.props.link} className={this.props.className} onClick={this.props.onClick} style={this.linkStyle}>{this.props.children}</a>
+                <a href={this.props.link} className={this.props.className} onClick={this.props.onClick} style={this.linkStyle} target={this.props.target}>{this.props.children}</a>
             </li>
         )
     }

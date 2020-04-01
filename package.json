@@ -11,7 +11,8 @@
     "node": "10.14.2"
   },
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "build" : "cd server && rm -rf build && cd ../client && react-scripts build && mv build ../server"
   },
   "eslintConfig": {
     "extends": "react-app"
