@@ -65,8 +65,8 @@ export class NavBar extends Component {
         }
         
         if (this.state.theposition > 0.1 && this.state.width > 768) {
-            style = {...NavBarStyle, borderBottom: '1px solid rgba(128, 128, 128, 0.5'}
-        } else if (this.state.theposition < 0.1 && this.state.width > 768 ) { style = {...NavBarStyle, borderBottom: 'none'} }
+            style = {...NavBarStyle, borderBottom: '1px solid rgba(128, 128, 128, 0.5', backdropFilter: '3px'}
+        } else if (this.state.theposition < 0.1 && this.state.width > 768 ) { style = {...NavBarStyle, borderBottom: 'none', backdropFilter: 'none'} }
 
         return(
             <div style={style} className={this.props.className}>
