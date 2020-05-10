@@ -1,5 +1,5 @@
 {
-  "name": "Next-Server-Boiler",
+  "name": "personal-site",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -27,7 +27,7 @@
   "scripts": {
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "dev": "node server.js",
+    "dev": "DEBUG=true PORT=1298 node server.js",
     "nodemon": "nodemon server.js"
   }
 }

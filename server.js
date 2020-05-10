@@ -8,7 +8,6 @@ const handle = app.getRequestHandler()
 // Package imports
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const morgan = require('morgan');
 const statusMonitor = require('express-status-monitor')();
 
@@ -18,11 +17,10 @@ const statusMonitor = require('express-status-monitor')();
 const logger = require('./Server/Logger')('server');
 
 // Config
-const CONFIG = require('./Server/config');
 
 const CLIMESSAGE = () => {
   logger.normal("######################");
-  logger.normal("OnDemand Server      ");
+  logger.normal("Next.JS & Express Server      ");
   logger.normal("######################");
 };
 
@@ -34,7 +32,7 @@ app.prepare()
   CLIMESSAGE()
 
  // Morgan Logger
-  CONFIG.DEBUG ? server.use(morgan('dev')) : null;
+  process.env.DEBUG ? server.use(morgan('dev')) : null;
   
   server.use(statusMonitor)
 
@@ -42,20 +40,20 @@ app.prepare()
   server.use(cookieParser());
   server.use(bodyParser.urlencoded({ extended: false }));
   server.use(bodyParser.json());
-  server.use(session({
-    secret: CONFIG.SECRET,
-    resave: false,
-    saveUninitialized: true,
-  }));
-  server.use(express.static('./static'))
+  server.use('/static', express.static('./static'))
+
+  server.get('/', async (req, res) => {
+    const actualRoute = '/'
+    return app.render(req, res, actualRoute);
+  });
 
   server.get('*', (req, res) => {
     return handle(req, res)
   })
     
-  server.listen(CONFIG.PORT || 3000 , (err) => {
+  server.listen(process.env.PORT || 3000 , (err) => {
     if (err) throw err
-    logger.green(`Server started on https://localhost:${CONFIG.PORT || 3000 }`);
+    logger.green(`Server started on http://localhost:${process.env.PORT || 3000 }`);
   })
 })
 .catch((ex) => {

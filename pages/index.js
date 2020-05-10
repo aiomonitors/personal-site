@@ -1,7 +1,5 @@
+import App from '../components/App'
 const Index = props => {
-    return (
-        <h1>Hello World</h1>
-    )
+    return <App />
 }
-
 export default Index;
