@@ -32,7 +32,7 @@ class App extends Component {
                 <header>
                     <NavBar logo="🧬">
                         <NavComponent link="#projects">Projects</NavComponent>
-                        <NavComponent link="./resume.pdf" target="_blank">Resume</NavComponent>
+                        <NavComponent link="./static/resume.pdf" target="_blank">Resume</NavComponent>
                         <NavComponent link="https://github.com/aiomonitors" target="_blank">Github</NavComponent>
                         <ContactButton link="mailto:navr@discoders.us" />
                     </NavBar>
@@ -257,7 +257,7 @@ class Footer extends Component {
                 <div style={{display: 'inline-block', fontSize: '12px', marginLeft: '20px'}}>Shihab Chowdhury</div>
                 <div style={linkStyle}>
                     <FooterComponent state={this.props.state} link="#projects">Projects</FooterComponent>
-                    <FooterComponent state={this.props.state} link="./resume.pdf" target="_blank">Resume</FooterComponent>
+                    <FooterComponent state={this.props.state} link="./static/resume.pdf" target="_blank">Resume</FooterComponent>
                     <FooterComponent state={this.props.state} link="https://github.com/aiomonitors"target="_blank">Github</FooterComponent>
                     <Socials state={this.props.state}/>
                     <FooterComponent state={this.props.state}>Built with <PurpleLink>React</PurpleLink></FooterComponent>
